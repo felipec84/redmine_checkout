@@ -4,6 +4,13 @@
   style ||= index == '--INDEX--' ? "display:none" : ""
   
   protocol = Checkout::Protocol.new(protocol) unless protocol.is_a? Checkout::Protocol
+  def image_to_function(name, function, html_options = {})
+    html_options.symbolize_keys!
+    tag(:input, html_options.merge({
+        :type => "image", :src => image_path(name),
+        :onclick => (html_options[:onclick] ? "#{html_options[:onclick]}; " : "") + "#{function};"
+        }))
+  end
 %>
 <tr id="<%= "checkout_protocols_#{scm}_#{index}" %>" class="<%= classes %>" style="<%= style %>">
   <td class="protocol_protocol"         ><%= text_field_tag "settings[checkout_protocols_#{scm}][#{index}][protocol]", protocol.protocol, :size => 10 %></td>
