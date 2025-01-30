@@ -5,7 +5,9 @@ module Checkout
 
       base.class_eval do
       
-        alias_method_chain :edit, :checkout
+        #alias_method_chain :edit, :checkout
+        alias_method :edit_without_checkout, :edit
+        alias_method :edit, :edit_with_checkout
       end
     end
     
