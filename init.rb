@@ -1,21 +1,11 @@
 require 'redmine'
 
 
-Rails.configuration.to_prepare do
-  require_dependency 'checkout/settings_controller_patch'
-
-  require_dependency 'checkout/repositories_helper_patch'
-  require_dependency 'checkout/repository_patch'
-
-  require_dependency 'checkout/settings_helper_patch'
-  require_dependency 'checkout/setting_patch'
-end
-
 # Hooks
-require 'checkout/repository_hooks'
+require_relative 'lib/checkout/repository_hooks'
 
 # Helpers
-require 'checkout/view_helper'
+require_relative 'lib/checkout/view_helper'
 
 Redmine::Plugin.register :redmine_checkout do
   name 'Redmine Checkout plugin'
@@ -40,7 +30,7 @@ EOF
   })
 
   # this is needed for setting the defaults
-  require 'checkout/repository_patch'
+  require_relative 'lib/checkout/repository_patch'
 
   CheckoutHelper.supported_scm.each do |scm|
     klazz = Repository.const_get(scm)

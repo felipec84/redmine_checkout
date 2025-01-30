@@ -1,5 +1,3 @@
-require_dependency 'repository'
-require_dependency 'checkout_helper'
 
 module Checkout
   module RepositoryPatch
@@ -142,7 +140,6 @@ commands = {
 }
 
 CheckoutHelper.supported_scm.each do |scm|
-  require_dependency "repository/#{scm.underscore}"
   cls = Repository.const_get(scm)
 
   allow_subtree_checkout = ""
@@ -169,8 +166,7 @@ CheckoutHelper.supported_scm.each do |scm|
       base.extend ChildClassMethods
 
       base.class_eval do
-        unloadable
-        serialize :checkout_settings, Hash
+        serialize :checkout_settings, type: Hash
       end
     end
 
