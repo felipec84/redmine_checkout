@@ -8,7 +8,6 @@ module Checkout
       base.send(:include, InstanceMethods)
 
       base.class_eval do
-        unloadable
         serialize :checkout_settings, type:Hash
         
         safe_attributes 'checkout_settings',
