@@ -1,6 +1,6 @@
 class AddUsernameToProtocolUrls < ActiveRecord::Migration
   class Repository < ActiveRecord::Base
-    serialize :checkout_settings, Hash
+    serialize :checkout_settings, type:Hash
 
     # disable single table inheritance
     def self.inheritance_column() nil end

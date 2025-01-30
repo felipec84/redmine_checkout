@@ -9,7 +9,7 @@ module Checkout
 
       base.class_eval do
         unloadable
-        serialize :checkout_settings, Hash
+        serialize :checkout_settings, type:Hash
         
         safe_attributes 'checkout_settings',
           'checkout_overwrite',

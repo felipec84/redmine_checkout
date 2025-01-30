@@ -5,7 +5,7 @@ class ConsolidateRepositoryOptions < ActiveRecord::Migration
       nil
     end
     
-    serialize :checkout_settings, Hash
+    serialize :checkout_settings, type:Hash
   end
 
   def self.up
